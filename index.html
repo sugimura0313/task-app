@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>タスク管理ダッシュボード</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo">TaskFlow</div>
+        <div class="user-profile">
+          <img src="https://i.pravatar.cc/64?img=32" alt="User avatar" />
+          <div>
+            <p class="user-name">佐藤 花子</p>
+            <p class="user-role">プロダクトマネージャー</p>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <h2>メニュー</h2>
+          <a href="#" class="active">ダッシュボード</a>
+          <a href="#">マイタスク</a>
+          <a href="#">カレンダー</a>
+          <a href="#">レポート</a>
+          <h2>ショートカット</h2>
+          <a href="#">今週の優先タスク</a>
+          <a href="#">最近更新されたプロジェクト</a>
+          <a href="#">アーカイブ</a>
+        </nav>
+        <div class="sidebar-footer">
+          <h2>フォルダー</h2>
+          <div class="folder">
+            <span class="dot" style="--color: #5b67f1"></span> プロダクト開発
+          </div>
+          <div class="folder">
+            <span class="dot" style="--color: #37c3be"></span> マーケティング
+          </div>
+          <div class="folder">
+            <span class="dot" style="--color: #f6a14a"></span> 採用活動
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="main-header">
+          <div class="title-group">
+            <h1>タスク管理</h1>
+            <p>チーム全体の進捗をひと目で把握しましょう。</p>
+          </div>
+          <div class="header-actions">
+            <div class="search-box">
+              <span class="icon">🔍</span>
+              <input type="search" placeholder="タスク、プロジェクト、メンバーを検索" />
+            </div>
+            <button class="primary-btn">新規タスク</button>
+          </div>
+        </header>
+
+        <section class="toolbar">
+          <div class="view-toggle" role="tablist">
+            <button class="toggle-btn active" data-target="all" role="tab">
+              全タスク
+            </button>
+            <button class="toggle-btn" data-target="by-project" role="tab">
+              プロジェクトごと
+            </button>
+            <button class="toggle-btn" data-target="by-task" role="tab">
+              タスクビュー
+            </button>
+          </div>
+          <div class="toolbar-actions">
+            <button class="secondary-btn">フィルター</button>
+            <button class="secondary-btn">並び替え</button>
+            <button class="secondary-btn">エクスポート</button>
+          </div>
+        </section>
+
+        <section class="content">
+          <div class="view" id="view-all" data-view="all">
+            <div class="insight-grid">
+              <div class="insight-card">
+                <div class="insight-header">
+                  <span class="badge">本日</span>
+                  <span class="trend up">▲ 12%</span>
+                </div>
+                <h3>完了タスク</h3>
+                <p class="insight-value">18</p>
+                <p class="insight-desc">昨日よりも効率的に進んでいます</p>
+              </div>
+              <div class="insight-card">
+                <div class="insight-header">
+                  <span class="badge badge-neutral">ステータス</span>
+                </div>
+                <h3>進捗状況</h3>
+                <div class="progress">
+                  <div class="progress-segment" style="width: 45%"></div>
+                  <div class="progress-segment warning" style="width: 30%"></div>
+                  <div class="progress-segment danger" style="width: 25%"></div>
+                </div>
+                <ul class="progress-labels">
+                  <li><span class="dot" style="--color: #5b67f1"></span> 進行中</li>
+                  <li><span class="dot" style="--color: #f6a14a"></span> 注意</li>
+                  <li><span class="dot" style="--color: #ef5a68"></span> 遅延</li>
+                </ul>
+              </div>
+              <div class="insight-card">
+                <div class="insight-header">
+                  <span class="badge badge-neutral">アクティブ</span>
+                </div>
+                <h3>メンバー</h3>
+                <div class="avatar-group">
+                  <img src="https://i.pravatar.cc/40?img=1" alt="" />
+                  <img src="https://i.pravatar.cc/40?img=12" alt="" />
+                  <img src="https://i.pravatar.cc/40?img=22" alt="" />
+                  <img src="https://i.pravatar.cc/40?img=47" alt="" />
+                  <span class="avatar-more">+5</span>
+                </div>
+                <p class="insight-desc">12名が進行中のタスクに参加中</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2>アクティブタスク</h2>
+                <button class="text-btn">すべて表示</button>
+              </div>
+              <table class="task-table">
+                <thead>
+                  <tr>
+                    <th>タスク</th>
+                    <th>プロジェクト</th>
+                    <th>担当者</th>
+                    <th>期限</th>
+                    <th>ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>UIスタイルガイドの更新</td>
+                    <td>プロダクト開発</td>
+                    <td>
+                      <div class="assignee">
+                        <img src="https://i.pravatar.cc/32?img=14" alt="" />
+                        <span>高橋 真一</span>
+                      </div>
+                    </td>
+                    <td>2024/05/21</td>
+                    <td><span class="status status-progress">進行中</span></td>
+                  </tr>
+                  <tr>
+                    <td>ABテスト結果の分析</td>
+                    <td>マーケティング</td>
+                    <td>
+                      <div class="assignee">
+                        <img src="https://i.pravatar.cc/32?img=9" alt="" />
+                        <span>山田 恵</span>
+                      </div>
+                    </td>
+                    <td>2024/05/18</td>
+                    <td><span class="status status-warning">注意</span></td>
+                  </tr>
+                  <tr>
+                    <td>エンジニア採用要件定義</td>
+                    <td>採用活動</td>
+                    <td>
+                      <div class="assignee">
+                        <img src="https://i.pravatar.cc/32?img=24" alt="" />
+                        <span>鈴木 翼</span>
+                      </div>
+                    </td>
+                    <td>2024/05/23</td>
+                    <td><span class="status status-danger">遅延</span></td>
+                  </tr>
+                  <tr>
+                    <td>オンボーディング資料の更新</td>
+                    <td>人事</td>
+                    <td>
+                      <div class="assignee">
+                        <img src="https://i.pravatar.cc/32?img=30" alt="" />
+                        <span>小林 絵里</span>
+                      </div>
+                    </td>
+                    <td>2024/05/29</td>
+                    <td><span class="status status-upcoming">予定</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="view hidden" id="view-by-project" data-view="by-project">
+            <div class="card-grid">
+              <article class="project-card">
+                <header>
+                  <div class="project-tag" style="--color: #5b67f1">
+                    プロダクト開発
+                  </div>
+                  <span class="project-progress">76% 完了</span>
+                </header>
+                <h3>新ダッシュボードのローンチ</h3>
+                <p class="project-desc">
+                  ユーザー向けダッシュボードの刷新。主要KPIをリアルタイムで可視化。
+                </p>
+                <ul class="project-meta">
+                  <li>タスク: 18 / 24</li>
+                  <li>期限: 2024/06/12</li>
+                  <li>オーナー: 田中 一郎</li>
+                </ul>
+                <div class="project-footer">
+                  <div class="avatar-group">
+                    <img src="https://i.pravatar.cc/32?img=4" alt="" />
+                    <img src="https://i.pravatar.cc/32?img=6" alt="" />
+                    <img src="https://i.pravatar.cc/32?img=15" alt="" />
+                  </div>
+                  <button class="text-btn">詳細を見る</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <header>
+                  <div class="project-tag" style="--color: #37c3be">マーケティング</div>
+                  <span class="project-progress">52% 完了</span>
+                </header>
+                <h3>夏季キャンペーン 2024</h3>
+                <p class="project-desc">
+                  新機能リリースに合わせたマルチチャネルの集客キャンペーン。
+                </p>
+                <ul class="project-meta">
+                  <li>タスク: 11 / 21</li>
+                  <li>期限: 2024/07/05</li>
+                  <li>オーナー: 佐々木 美香</li>
+                </ul>
+                <div class="project-footer">
+                  <div class="avatar-group">
+                    <img src="https://i.pravatar.cc/32?img=7" alt="" />
+                    <img src="https://i.pravatar.cc/32?img=16" alt="" />
+                    <img src="https://i.pravatar.cc/32?img=19" alt="" />
+                  </div>
+                  <button class="text-btn">詳細を見る</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <header>
+                  <div class="project-tag" style="--color: #f6a14a">採用活動</div>
+                  <span class="project-progress">34% 完了</span>
+                </header>
+                <h3>中途エンジニア採用</h3>
+                <p class="project-desc">
+                  採用要件の策定から候補者面談、入社までのプロセス最適化。
+                </p>
+                <ul class="project-meta">
+                  <li>タスク: 7 / 20</li>
+                  <li>期限: 2024/08/01</li>
+                  <li>オーナー: 井上 健</li>
+                </ul>
+                <div class="project-footer">
+                  <div class="avatar-group">
+                    <img src="https://i.pravatar.cc/32?img=20" alt="" />
+                    <img src="https://i.pravatar.cc/32?img=23" alt="" />
+                  </div>
+                  <button class="text-btn">詳細を見る</button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="view hidden" id="view-by-task" data-view="by-task">
+            <div class="kanban">
+              <div class="kanban-column">
+                <header>
+                  <h3>未着手</h3>
+                  <span class="count">5</span>
+                </header>
+                <div class="kanban-card">
+                  <span class="tag" style="--color: #37c3be">マーケティング</span>
+                  <h4>リードナーチャリング設計</h4>
+                  <p>メールシナリオとスコアリングの見直し</p>
+                  <div class="card-meta">
+                    <span class="due">期限: 5/24</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=8" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card">
+                  <span class="tag" style="--color: #ef5a68">採用活動</span>
+                  <h4>スカウトメールテンプレ更新</h4>
+                  <p>テンプレの効果測定から改善案を作成</p>
+                  <div class="card-meta">
+                    <span class="due">期限: 5/19</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=18" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kanban-column">
+                <header>
+                  <h3>進行中</h3>
+                  <span class="count">8</span>
+                </header>
+                <div class="kanban-card">
+                  <span class="tag" style="--color: #5b67f1">プロダクト開発</span>
+                  <h4>QAテストの自動化</h4>
+                  <p>主要シナリオのテストスクリプト整備</p>
+                  <div class="card-meta">
+                    <span class="due">期限: 5/22</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=10" alt="" />
+                      <img src="https://i.pravatar.cc/28?img=13" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card">
+                  <span class="tag" style="--color: #f6a14a">採用活動</span>
+                  <h4>一次面接のスケジュール調整</h4>
+                  <p>候補者への連絡と面接官の調整</p>
+                  <div class="card-meta">
+                    <span class="due">期限: 5/20</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=25" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kanban-column">
+                <header>
+                  <h3>レビュー待ち</h3>
+                  <span class="count">3</span>
+                </header>
+                <div class="kanban-card">
+                  <span class="tag" style="--color: #37c3be">マーケティング</span>
+                  <h4>LPコピーの校正</h4>
+                  <p>校正完了後にA/Bテストへ回す</p>
+                  <div class="card-meta">
+                    <span class="due">期限: 5/18</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=28" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kanban-column">
+                <header>
+                  <h3>完了</h3>
+                  <span class="count">12</span>
+                </header>
+                <div class="kanban-card completed">
+                  <span class="tag" style="--color: #5b67f1">プロダクト開発</span>
+                  <h4>UXリサーチレポート</h4>
+                  <p>主要な改善点をまとめた報告書</p>
+                  <div class="card-meta">
+                    <span class="due">完了日: 5/15</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=31" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-card completed">
+                  <span class="tag" style="--color: #ef5a68">採用活動</span>
+                  <h4>リファレンスチェック完了</h4>
+                  <p>候補者2名分のチェックを実施</p>
+                  <div class="card-meta">
+                    <span class="due">完了日: 5/14</span>
+                    <div class="avatar-group">
+                      <img src="https://i.pravatar.cc/28?img=33" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
